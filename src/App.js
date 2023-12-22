@@ -1,9 +1,11 @@
+import React, { useState } from "react";
 import "./App.css";
+import ExpenseFilter from "./components/Expenses/ExpenseFilter";
 import ExpenseItems from "./components/Expenses/ExpenseItems";
 import NewExpense from "./components/NewExpenses/NewExpense";
 
 function App() {
-  const expenses = [
+  const initialExpenses = [
     {
       id: "e1",
       title: "Toilet Paper",
@@ -25,15 +27,30 @@ function App() {
     },
   ];
 
-  const addExpenseHandler = (expense) => {
+
+  const addExpenseHandler = (initialExpenses) => {
     console.log("In App.js");
-    console.log(expense);
+    console.log(initialExpenses);
   };
+
+  const [filteredYear, setFilteredYear] = useState("2020");
+
+  const filterChangeHandler = (selectedYear) => {
+    setFilteredYear(selectedYear);
+  };
+
+  const filteredExpenses = initialExpenses.filter(
+    (expense) => expense.date.getFullYear().toString() === filteredYear
+  );
 
   return (
     <div>
       <NewExpense onAddExpense={addExpenseHandler} />
-      {expenses.map((expense) => (
+      <ExpenseFilter
+        selected={filteredYear}
+        onChangeFilter={filterChangeHandler}
+      />
+      {filteredExpenses.map((expense) => (
         <ExpenseItems
           key={expense.id}
           title={expense.title}
