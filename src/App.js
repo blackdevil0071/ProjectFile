@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import "./App.css";
 import ExpenseFilter from "./components/Expenses/ExpenseFilter";
-import ExpenseItems from "./components/Expenses/ExpenseItems";
+// import ExpenseItems from "./components/Expenses/ExpenseItems";
 import NewExpense from "./components/NewExpenses/NewExpense";
+import ExpenseList from "./components/Expenses/ExpenseList";
 
 function App() {
   const initialExpenses = [
@@ -27,7 +28,6 @@ function App() {
     },
   ];
 
-
   const addExpenseHandler = (initialExpenses) => {
     console.log("In App.js");
     console.log(initialExpenses);
@@ -43,21 +43,30 @@ function App() {
     (expense) => expense.date.getFullYear().toString() === filteredYear
   );
 
+  // let expenseContent = <p>No Expenses Found</p>
+  // if(filteredExpenses.length>0){
+  //   expenseContent =  filteredExpenses.map((expense) => (
+  //     <ExpenseItems
+  //       key={expense.id}
+  //       title={expense.title}
+  //       amount={expense.amount}
+  //       date={expense.date}
+  //     />
+      
+  //   ))
+  
+  // }
+
+
   return (
     <div>
       <NewExpense onAddExpense={addExpenseHandler} />
       <ExpenseFilter
         selected={filteredYear}
         onChangeFilter={filterChangeHandler}
+        availableYears={[2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018]}
       />
-      {filteredExpenses.map((expense) => (
-        <ExpenseItems
-          key={expense.id}
-          title={expense.title}
-          amount={expense.amount}
-          date={expense.date}
-        />
-      ))}
+      <ExpenseList items={filteredExpenses}/>
     </div>
   );
 }
