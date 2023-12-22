@@ -6,6 +6,8 @@ import NewExpense from "./components/NewExpenses/NewExpense";
 import ExpenseList from "./components/Expenses/ExpenseList";
 
 function App() {
+
+  const[showExpenseForm,setShowExpenseForm] = useState(false)
   const initialExpenses = [
     {
       id: "e1",
@@ -28,9 +30,14 @@ function App() {
     },
   ];
 
+  const toggleExpenseFormHandler = () =>{
+    setShowExpenseForm((prevShowForm => !prevShowForm))
+  }
+
   const addExpenseHandler = (initialExpenses) => {
     console.log("In App.js");
     console.log(initialExpenses);
+    setShowExpenseForm(false)
   };
 
   const [filteredYear, setFilteredYear] = useState("2020");
@@ -60,7 +67,12 @@ function App() {
 
   return (
     <div>
-      <NewExpense onAddExpense={addExpenseHandler} />
+
+<button onClick={toggleExpenseFormHandler}>Add New Expense</button>
+      {showExpenseForm && (
+        <NewExpense onAddExpense={addExpenseHandler} />
+      )}
+
       <ExpenseFilter
         selected={filteredYear}
         onChangeFilter={filterChangeHandler}
