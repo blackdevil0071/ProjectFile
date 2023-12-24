@@ -10,7 +10,7 @@ export default function ExpenseList(props) {
     <div>
       <h2>Found {props.items.length} Item{props.items.length > 1 ? 's' : ''}</h2>
       <ul>
-        {props.items.map((expense) => (
+        {props.items.map((expense,index) => (
           <ExpenseItems
             key={expense.id}
             title={expense.title}
@@ -22,3 +22,4 @@ export default function ExpenseList(props) {
     </div>
   );
 }
+

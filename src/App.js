@@ -3,6 +3,7 @@ import "./App.css";
 import ExpenseFilter from "./components/Expenses/ExpenseFilter";
 import NewExpense from "./components/NewExpenses/NewExpense";
 import ExpenseList from "./components/Expenses/ExpenseList";
+import ExpenseItems from "./components/Expenses/ExpenseItems";
 
 const DUMMY_EXPENSES = [
   {
@@ -62,6 +63,7 @@ function App() {
         availableYears={[2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018]}
       />
       <ExpenseList items={filteredExpenses} />
+      
     </div>
   );
 }
