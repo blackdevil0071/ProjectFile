@@ -4,7 +4,7 @@ import ExpenseFilter from "./components/Expenses/ExpenseFilter";
 import NewExpense from "./components/NewExpenses/NewExpense";
 import ExpenseList from "./components/Expenses/ExpenseList";
 import ExpenseItems from "./components/Expenses/ExpenseItems";
-
+import ExpensesChart from "./components/Expenses/ExpensesChar";
 const DUMMY_EXPENSES = [
   {
     id: "e1",
@@ -62,6 +62,7 @@ function App() {
         onChangeFilter={filterChangeHandler}
         availableYears={[2025, 2024, 2023, 2022, 2021, 2020, 2019, 2018]}
       />
+      <ExpensesChart expenses = {filteredExpenses}/>
       <ExpenseList items={filteredExpenses} />
       
     </div>
